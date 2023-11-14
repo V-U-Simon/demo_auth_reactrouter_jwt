@@ -14,8 +14,11 @@ export interface Token {
 
 // =======================  USER =======================
 export interface CurrentUserType {
-  pk: number;
+  id: number;
+  username: string;
   email: string;
+  is_active: boolean;
+  created: string;
 }
 
 // =======================  LOGIN =======================
@@ -24,6 +27,8 @@ export type LoginParams = {
   password: string;
 };
 
-export type Session = Token & {
+export type Session = {
+  access: accessToken;
+  refresh: refreshToken;
   user: CurrentUserType;
 };

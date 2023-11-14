@@ -1,18 +1,22 @@
 import { Link, Outlet } from "react-router-dom";
-import axios from "axios";
 import { apiAuth } from "src/api/auth";
+import { SessionContext } from "src/providers/sessionProvider";
+import { useContext } from "react";
 
 export const Layout = () => {
+  const { session, login, logout } = useContext(SessionContext);
+
   async function handleSubmit() {
     console.log("click");
 
-    const credential = {
+    await login({
       email: "admin@admin.ru",
       password: "password",
-    };
+    });
 
-    const response = await apiAuth.login(credential);
-    console.log(response);
+    // const response = await apiAuth.login();
+
+    // console.log(response);
   }
 
   return (
@@ -26,8 +30,16 @@ export const Layout = () => {
           handleSubmit();
         }}
       >
-        Get data
+        login
       </button>
+      <button
+        onClick={async () => {
+          await logout();
+        }}
+      >
+        logout
+      </button>
+      <h2>{JSON.stringify(session)}</h2>
       <nav>
         <Link to="/">Root</Link>
         <Link to="/home">Home</Link>

@@ -5,7 +5,9 @@ async function setSession(session: Session): Promise<void> {
   await localforage.setItem("authSession", session);
 }
 async function getSession(): Promise<Session> {
-  return (await localforage.getItem("authSession")) as Session;
+  const session = (await localforage.getItem("authSession")) as Session | null;
+  if (!session) return {} as Session;
+  return session;
 }
 async function removeSession(): Promise<void> {
   localforage.removeItem("authSession");
