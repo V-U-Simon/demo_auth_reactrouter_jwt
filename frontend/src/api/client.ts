@@ -27,7 +27,7 @@ instance.interceptors.response.use(
   },
   (error: AxiosError) => {
     console.error(`interceptor.response ${error.config?.url} (ERROR ${error.status}):`, error);
-    return error.response?.data;
+    throw error;
   }
 );
 

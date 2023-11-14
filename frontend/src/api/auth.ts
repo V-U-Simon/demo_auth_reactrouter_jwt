@@ -6,7 +6,7 @@ async function login({ email, password }: LoginParams): Promise<Session> {
     email: email,
     password: password,
   });
-  return response.data;
+  return response?.data;
 }
 
 export const apiAuth = {

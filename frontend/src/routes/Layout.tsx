@@ -3,15 +3,16 @@ import { LoginParams } from "src/api/types";
 import { useSession } from "src/hooks/useSession";
 
 export const Layout = () => {
-  const { session, login, logout } = useSession();
+  const { session, login, logout, error, setError } = useSession();
 
   async function handleSubmit() {
     console.log("click");
 
     const credential = {
       email: "admin@admin.ru",
-      password: "password",
+      password: "password1",
     } as LoginParams;
+
     await login(credential);
   }
 
@@ -31,11 +32,13 @@ export const Layout = () => {
       <button
         onClick={async () => {
           await logout();
+          setError("reset");
         }}
       >
         logout
       </button>
       <h2>{JSON.stringify(session)}</h2>
+      <h2>{JSON.stringify(error)}</h2>
       <nav>
         <Link to="/">Root</Link>
         <Link to="/home">Home</Link>

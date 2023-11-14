@@ -2,7 +2,7 @@ import { SessionContext, SessionContextType } from "src/providers/sessionProvide
 import { useContext } from "react";
 
 export function useSession() {
-  const { session, login, logout } = useContext(SessionContext);
+  const { session, login, logout, error, setError } = useContext(SessionContext) as SessionContextType;
   const isAtuhented = () => Boolean(session?.access);
-  return { session, isAtuhented, login, logout };
+  return { session, isAtuhented, login, logout, error, setError };
 }

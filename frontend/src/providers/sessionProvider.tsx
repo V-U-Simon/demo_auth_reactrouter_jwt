@@ -8,6 +8,8 @@ export interface SessionContextType {
   session: Session;
   login: (params: LoginParams) => Promise<void>;
   logout: () => Promise<void>;
+  //   error: any;
+  //   setError: any;
 }
 
 interface SessionProviderProps {
@@ -18,8 +20,8 @@ export const SessionContext = createContext<SessionContextType | null>(null);
 
 export const SessionProvider: React.FC<SessionProviderProps> = ({ children }) => {
   const [session, setSession] = useState<Session>({} as Session);
+  const [error, setError] = useState("some error");
   //   const [loading, setLoading] = useState(false);
-  //   const [error, setError] = useState(null);
 
   // * set auth state in initial mounting components
   useEffect(() => {
@@ -46,7 +48,8 @@ export const SessionProvider: React.FC<SessionProviderProps> = ({ children }) =>
       setSession(newSession);
     } catch (error) {
       console.error("Error login:", error);
-      //   setError(error);
+      await storage.setSession({} as Session);
+      setError(error);
     }
   }
 
@@ -56,7 +59,7 @@ export const SessionProvider: React.FC<SessionProviderProps> = ({ children }) =>
   }
 
   //   const memoValues = useMemo(() => ({ session, login, logout, loading, error, setError }), [session, error]);
-  const memoValues = useMemo(() => ({ session, login, logout }), [session]);
+  const memoValues = useMemo(() => ({ session, login, logout, error, setError }), [session, error]);
 
   return <SessionContext.Provider value={memoValues}>{children}</SessionContext.Provider>;
 };
