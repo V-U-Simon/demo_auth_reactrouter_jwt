@@ -1,15 +1,16 @@
 import { SessionContext, SessionContextType } from "src/providers/sessionProvider";
 import { useContext } from "react";
+import { storage } from "src/api/storage";
 
 export function useSession() {
   const { session } = useContext(SessionContext) as SessionContextType;
-  const isAtuhented = () => Boolean(session?.access);
-  return { session, isAtuhented };
+  const isAuthenticated = () => Boolean(session?.access);
+  return { session, isAuthenticated };
 }
 
 export function useLogin() {
-  const { login, error, setError } = useContext(SessionContext) as SessionContextType;
-  return { login, error, setError };
+  const { login, errors, setErrors } = useContext(SessionContext) as SessionContextType;
+  return { login, errors, setErrors };
 }
 
 export function useLogout() {

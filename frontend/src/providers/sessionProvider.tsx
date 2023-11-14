@@ -20,7 +20,7 @@ export const SessionContext = createContext<SessionContextType | null>(null);
 
 export const SessionProvider: React.FC<SessionProviderProps> = ({ children }) => {
   const [session, setSession] = useState<Session>({} as Session);
-  const [error, setError] = useState("some error");
+  const [errors, setErrors] = useState({ email: "", password: "" });
 
   // * set auth state in initial mounting components
   useEffect(() => {
@@ -31,8 +31,8 @@ export const SessionProvider: React.FC<SessionProviderProps> = ({ children }) =>
     // console.debug("Loading initial session", loading);
     try {
       setSession(await storage.getSession());
-    } catch (error) {
-      console.error("Error loading user data:", error);
+    } catch (errors) {
+      console.error("Error loading user data:", errors);
     }
   }
 
@@ -42,10 +42,10 @@ export const SessionProvider: React.FC<SessionProviderProps> = ({ children }) =>
 
       await storage.setSession(newSession);
       setSession(newSession);
-    } catch (error) {
-      console.error("Error login:", error);
+    } catch (errors) {
+      console.error("Error login:", errors);
       await storage.setSession({} as Session);
-      setError(error);
+      setErrors(errors);
     }
   }
 
@@ -54,7 +54,7 @@ export const SessionProvider: React.FC<SessionProviderProps> = ({ children }) =>
     setSession({} as Session);
   }
 
-  const memoValues = useMemo(() => ({ session, login, logout, error, setError }), [session, error]);
+  const memoValues = useMemo(() => ({ session, login, logout, errors, setErrors }), [session, errors, setErrors]);
 
   return <SessionContext.Provider value={memoValues}>{children}</SessionContext.Provider>;
 };
