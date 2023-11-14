@@ -1,9 +1,11 @@
 import { Link, Outlet } from "react-router-dom";
 import { LoginParams } from "src/api/types";
-import { useSession } from "src/hooks/useSession";
+import { useLogin, useLogout, useSession } from "src/hooks/useSession";
 
 export const Layout = () => {
-  const { session, login, logout, error, setError } = useSession();
+  const { session, isAtuhented } = useSession();
+  const { login, error, setError } = useLogin();
+  const { logout } = useLogout();
 
   async function handleSubmit() {
     console.log("click");
