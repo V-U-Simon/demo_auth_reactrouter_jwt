@@ -1,5 +1,4 @@
-// import { DataRoutes } from "src/routes/dataRoutesV1";
-import { DataRoutes } from "src/app/dataRoutesV2";
+import { DataRoutes } from "src/app/router";
 import { AuthProvider } from "src/hooks/authProvider";
 
 export function App() {

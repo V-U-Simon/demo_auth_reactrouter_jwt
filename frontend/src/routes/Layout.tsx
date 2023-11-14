@@ -1,20 +1,18 @@
 import { Link, Outlet } from "react-router-dom";
-import { useAuth } from "src/hooks/useAuth";
+import { useSession } from "src/hooks/useSession";
+import { Login } from "./Login";
 
 export function Layout() {
-  console.log("hook is working");
-  const { token, login, logout } = useAuth();
+  const { session, isAuthenticated } = useSession();
 
   return (
     <>
-      <button onClick={() => login()} className={`btn ${token && "border-green-400"}`} disabled={token}>
-        Login
-      </button>
-      <button onClick={() => logout()} className={`btn ${!token && "border-red-400"}`} disabled={!token}>
+      <Login />
+      <button onClick={() => logout()} className={`btn ${!isAuthenticated && "border-red-400"}`} disabled={!isAuthenticated}>
         Logout
       </button>
 
-      <h2>Authorization status: {JSON.stringify(token)}</h2>
+      <h2>Authorization status: {JSON.stringify(session)}</h2>
       <div className="centered-container">
         <ul>
           <li>
