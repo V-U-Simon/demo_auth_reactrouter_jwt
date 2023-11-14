@@ -1,22 +1,18 @@
 import { Link, Outlet } from "react-router-dom";
-import { apiAuth } from "src/api/auth";
-import { SessionContext } from "src/providers/sessionProvider";
-import { useContext } from "react";
+import { LoginParams } from "src/api/types";
+import { useSession } from "src/hooks/useSession";
 
 export const Layout = () => {
-  const { session, login, logout } = useContext(SessionContext);
+  const { session, login, logout } = useSession();
 
   async function handleSubmit() {
     console.log("click");
 
-    await login({
+    const credential = {
       email: "admin@admin.ru",
       password: "password",
-    });
-
-    // const response = await apiAuth.login();
-
-    // console.log(response);
+    } as LoginParams;
+    await login(credential);
   }
 
   return (

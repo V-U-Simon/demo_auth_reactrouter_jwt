@@ -4,12 +4,10 @@ import { storage } from "src/api/storage";
 import { LoginParams, Session } from "src/api/types";
 
 // Определение типа для контекста
-interface SessionContextType {
+export interface SessionContextType {
   session: Session;
-  login: () => void;
-  logout: () => void;
-  //   error: any; //! stub
-  //   setError: any; //! stub
+  login: (params: LoginParams) => Promise<void>;
+  logout: () => Promise<void>;
 }
 
 interface SessionProviderProps {
