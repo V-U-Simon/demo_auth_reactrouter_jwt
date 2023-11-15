@@ -11,3 +11,5 @@ start tailwind
 ```bash
 yarn tailwind
 ```
+
+!!!!!! НУЖНО СТИЛИЗОВАТЬ !!!!!

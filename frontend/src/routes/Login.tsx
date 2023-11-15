@@ -64,7 +64,6 @@ export function Login() {
         </div>
         {errors.message && <p className="error">{errors.message}</p>}
       </form>
-      <h2>{JSON.stringify(session)}</h2>
       {isAuthenticated() && <Navigate to="/" replace={true} />}
     </div>
   );
