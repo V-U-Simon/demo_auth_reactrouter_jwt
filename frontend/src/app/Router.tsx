@@ -1,7 +1,7 @@
 import { Route, createRoutesFromElements, createBrowserRouter, RouterProvider, RouterProviderProps } from "react-router-dom";
 import React from "react";
 import { Home } from "src/routes/Home";
-import { Layout } from "src/routes/Layout";
+import { Layout } from "src/routes/layout/Layout";
 import { Account, Profile, User } from "src/routes/User";
 
 export const DataRoutes: React.FC = () => {
