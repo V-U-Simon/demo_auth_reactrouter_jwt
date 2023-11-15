@@ -4,12 +4,6 @@ export type LoginParams = {
   password: string;
 };
 
-export type Session = {
-  access: accessToken;
-  refresh: refreshToken;
-  user: CurrentUser;
-};
-
 export type LogoutResponse = {
   detail: string;
 };
@@ -25,16 +19,15 @@ export type CurrentUser = {
 };
 
 //  ==================== TOKEN =============================================
-
-export interface accessToken {
+export interface AccessToken {
   access: string | null;
 }
 
-export interface refreshToken {
+export interface RefreshToken {
   refresh: string | null;
 }
 
-export interface Token {
-  access: accessToken;
-  refresh: refreshToken;
-}
+export type Token = AccessToken & RefreshToken;
+
+//  ==================== SESSION =============================================
+export type Session = Token & CurrentUser;

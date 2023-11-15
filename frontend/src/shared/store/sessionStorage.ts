@@ -1,16 +1,16 @@
-import { CurrentUser } from "../api/types";
 import localforage from "localforage";
+import { Session } from "../api/types";
 
 // =================== WORK WITH LOCALSTORAGE ======================================
 
-export async function setSession(user: CurrentUser): Promise<void> {
-  await localforage.setItem("session", user);
+export async function setSession(session: Session): Promise<void> {
+  await localforage.setItem("session", session);
 }
 
 export async function removeSession(): Promise<void> {
   await localforage.removeItem("session");
 }
 
-export async function getSession(): Promise<CurrentUser> {
-  return (await localforage.getItem("session")) as CurrentUser;
+export async function getSession(): Promise<Session> {
+  return (await localforage.getItem("session")) as Session;
 }

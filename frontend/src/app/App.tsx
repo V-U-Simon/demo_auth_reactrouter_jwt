@@ -3,8 +3,13 @@
 // import "./index.css";
 import "./style.css";
 import "./input.css";
-import { DataRoutes } from "./Router";
+import { router } from "./Router";
+import { RouterProvider } from "react-router-dom";
+
+// export function App() {
+//   return <DataRoutes />;
+// }
 
 export function App() {
-  return <DataRoutes />;
+  return <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} />;
 }

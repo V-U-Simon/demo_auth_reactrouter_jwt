@@ -1,6 +1,8 @@
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { isExpired } from "react-jwt";
 import { store } from "../store";
+import { api } from ".";
+import { RefreshToken } from "./types";
 
 const instance: AxiosInstance = axios.create({
   baseURL: "http://127.0.0.1:8000/api/",
@@ -37,10 +39,14 @@ instance.interceptors.response.use(
  * refresh expired access token on without making needless request as it will return 401 response
  */
 instance.interceptors.request.use(async (config) => {
-  let token = await store.geAuthToken();
-  // @ts-ignore: token.access должен быть точно sting, поскольку его наличие сначала проверяется в первом условии
-  if (token.access && isExpired(token.access)) token = await auth.refreshExpiredAccessToken();
-  if (token.access) config.headers["Authorization"] = "Bearer " + token.access;
+  let session = await store.getSession();
+  // update session access token
+  // @ts-ignore: .access должен быть точно sting, поскольку его наличие сначала проверяется в первом условии
+  if (session && isExpired(session.access)) {
+    const token = await api.refreshExpiredAccessToken(session);
+    store.setSession({ ...session, ...token });
+  }
+  if (session && session.access) config.headers["Authorization"] = "Bearer " + session.access;
   return config;
 });
 

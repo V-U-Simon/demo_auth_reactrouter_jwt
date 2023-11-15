@@ -6,6 +6,7 @@ import { LoginParams, LogoutResponse, Session, Token } from "./types";
  *
  */
 export async function login({ email, password }: LoginParams): Promise<Session> {
+  // const response = await axios.post("http://localhost:8000/api/auth/login/", {
   const response = await client.post("auth/login/", {
     email: email,
     password: password,

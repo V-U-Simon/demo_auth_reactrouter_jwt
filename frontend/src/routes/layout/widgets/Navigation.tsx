@@ -1,6 +1,6 @@
 import React from "react";
 
-import { UINavLink } from "src/shared/UIkit/UINavLink";
+import { UINavLink } from "src/shared/UIKit/UINavLink";
 
 export function Navigation() {
   return (
