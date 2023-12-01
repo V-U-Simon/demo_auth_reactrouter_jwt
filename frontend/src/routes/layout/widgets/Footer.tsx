@@ -1,13 +1,9 @@
-import React from "react";
-
 export function Footer() {
   return (
-    <footer className="bg-gray-800 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-8 flex flex-col md:flex-row items-center justify-between">
-          <h1>Footer</h1>
-        </div>
-      </div>
+    <footer className="footer footer-center bg-base-300 p-4 text-base-content">
+      <aside>
+        <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+      </aside>
     </footer>
   );
 }

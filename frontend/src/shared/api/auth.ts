@@ -3,7 +3,6 @@ import { LoginParams, LogoutResponse, Session, Token } from "./types";
 
 /**
  * заполняем форму авторизации и отправляем на этот эндпоин
- *
  */
 export async function login({ email, password }: LoginParams): Promise<Session> {
   const response = await client.post("auth/login/", {
@@ -14,7 +13,6 @@ export async function login({ email, password }: LoginParams): Promise<Session> 
 }
 
 /**
- *
  * @param param0
  * @returns { "detail": "Neither cookies or blacklist are enabled, so the token has not been deleted server side. Please make sure the token is deleted client side." }
  */

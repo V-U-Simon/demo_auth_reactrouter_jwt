@@ -1,50 +1,31 @@
-import React from "react";
-
-import { UINavLink } from "src/shared/UIkit/UINavLink";
+// import { UINavLink } from "src/shared/UIkit/UINavLink";
+import { MenuDropDown, MenuHorizontal } from "./Menu";
+import { Link } from "react-router-dom";
 
 export function Navigation() {
   return (
     <nav>
-      <ul className="flex flex-wrap items-center text-sm justify-center space-x-4">
-        <li>
-          <UINavLink to="/">Home</UINavLink>
-        </li>
-        <li>
-          <UINavLink to="/about">About</UINavLink>
-        </li>
-        <li>
-          <UINavLink to="/contacts">Contacts</UINavLink>
-        </li>
-      </ul>
+      <div className="navbar bg-base-100">
+        {/* start */}
+        <MenuDropDown />
+        <div className="navbar-start">
+          <a className="btn btn-ghost text-xl">daisyUI</a>
+        </div>
+
+        {/* center */}
+        <div className="navbar-center hidden lg:flex">
+          <MenuHorizontal />
+        </div>
+        {/* end */}
+        <div className="navbar-end">
+          <Link
+            className="btn"
+            to="login/"
+          >
+            login
+          </Link>
+        </div>
+      </div>
     </nav>
   );
 }
-
-// export function Navigation() {
-//   return (
-//     <nav>
-//       <ul className="flex flex-wrap items-center text-sm justify-center space-x-4">
-//         <li>
-//           <NavLink to="/about" className="hover:underline">
-//             About Us
-//           </NavLink>
-//         </li>
-//         <li>
-//           <NavLink to="/services" className="hover:underline">
-//             Services
-//           </NavLink>
-//         </li>
-//         <li>
-//           <NavLink to="/blog" className="hover:underline">
-//             Blog
-//           </NavLink>
-//         </li>
-//         <li>
-//           <NavLink to="/contact" className="hover:underline">
-//             Contact
-//           </NavLink>
-//         </li>
-//       </ul>
-//     </nav>
-//   );
-// }
